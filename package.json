@@ -1,0 +1,32 @@
+{
+  "name": "@latouche/mono",
+  "version": "1.0.2",
+  "main": "index.js",
+  "repository": "https://github.com/DLatouche/mono.git",
+  "author": "Dorian <dorian@latouche.dev>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*",
+    "apps/**"
+  ],
+  "scripts": {
+    "commit": "cz",
+    "build:packages": "yarn lerna run build --scope {@latouche/mono-icons,@latouche/mono-components}",
+    "dev:app": "yarn lerna run dev --scope @latouche/mono-app",
+    "dev:packages": "yarn lerna run dev --scope {@latouche/mono-icons,@latouche/mono-components}",
+    "dev:css": "yarn lerna run dev:css --scope @latouche/mono-components",
+    "dev": "concurrently \"yarn dev:app\" \"yarn dev:css\" \"yarn dev:packages\"",
+    "publish": "yarn build:packages && yarn lerna run publish"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "commitizen": "^4.2.5",
+    "concurrently": "^7.6.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "lerna": "^6.1.0"
+  }
+}
